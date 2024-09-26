@@ -54,11 +54,13 @@ def request_uac_or_exit():
 
 if __name__ == "__main__":
     # MessagingService_5e93b  C:\Windows\system32\svchost.exe -k UnistackSvcGroup  WAHTS  -k UnistackSvcGroup
-    print("INFO: 傻逼完美对战反作弊蓝屏： anticheat driver with run(trigger) everytime when login into arena.exe\n     安装驱动然后调用他自己的DLL， 扫盘， 扫内存，扫进程，干扰Kernel")
+    print("INFO: 完美对战反作弊有几率造成蓝屏： anticheat driver with run(trigger) everytime when login into arena.exe\n     安装驱动然后调用他自己的DLL， 扫盘， 扫内存，扫进程，干扰Kernel")
 
     driver_name = "MessageTransfer"
 
-    if is_driver_installed(driver_name):
+    if not is_driver_installed(driver_name):
+        print(f"The driver '{driver_name}' is not installed.")
+    else:
         print(f"INFO: The driver '{driver_name}' is installed.")
         if is_driver_running(driver_name):
             print(f"The driver '{driver_name}' is currently running.")
@@ -71,7 +73,5 @@ if __name__ == "__main__":
                 print("WARNING: Driver stop operation aborted by user.")
         else:
             print(f"GOOD: The driver '{driver_name}.sys' is not running.")
-    else:
-        print(f"The driver '{driver_name}' is not installed.")
     
     input("Press Enter to exit...")
