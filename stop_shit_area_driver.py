@@ -4,7 +4,6 @@ import ctypes
 import sys
 import os
 
-
 def is_driver_installed(driver_name):
     try:
         win32serviceutil.QueryServiceStatus(driver_name)
@@ -39,15 +38,21 @@ def request_uac_or_exit():
     else:
         print("Requesting UAC permissions...")
         #  "runas" semantics: tell os to runas_admin.
-        # not clear to human read.
+        # its not clear to human read.
         result = ctypes.windll.shell32.ShellExecuteW(
-            None, "runas", sys.executable, " ".join(sys.argv), None, 1
+            # hwnd, lpOperation, lpFile, lpParameters, lpDirectory, nShowCmd
+            None,
+            "runas",
+            sys.executable,
+            " ".join(sys.argv),
+            None,
+            1,
         )
         if result > 32:
             print("UAC request successful: Running as administrator.")
         else:
-            print("ERROR: UAC request failed: Exiting.")
-            sys.exit()
+            print("ERROR: UAC request failed")
+            input("Press Enter to exit...")
 
 
 # pyinstaller --onefile stop_shit_area_driver.py
