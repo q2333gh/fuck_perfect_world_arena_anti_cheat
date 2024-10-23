@@ -4,7 +4,9 @@ import shutil
 import os
 import sys
 
-# TODO still not work as ps1 did. buggy.
+# TODO still not work as ps1 did. buggy. and not ez like py code  simplicity.
+# not expressive and delaritive code enough. may need find real-time output executed cli cmd lib in py.
+
 # Run PyInstaller with realtime output
 process = subprocess.Popen(
     ["pyinstaller", "--onefile", "./stop_shit_area_driver.py"],
