@@ -102,7 +102,7 @@ def disable_auto_start(driver_name):
 if __name__ == "__main__":
     # MessagingService_5e93b  C:\Windows\system32\svchost.exe -k UnistackSvcGroup  WAHTS  -k UnistackSvcGroup
     print(
-        "INFO: 完美对战反作弊有几率造成蓝屏： anticheat driver with run(trigger) everytime when login into arena.exe\n     安装驱动然后调用他自己的DLL， 扫盘， 扫内存，扫进程，干扰Kernel"
+        "INFO: 完美对战反作弊有几率造成蓝屏： anticheat driver with run(trigger) everytime when login into arena.exe\n     安装驱动然后调用他自己的DLL， 扫盘， 扫内存，扫进程，干扰Kernel， 另外，MessageTransfer.sys 这个名称也有点像故意隐藏自己的目的 :( "
     )
 
     driver_name = "MessageTransfer"
@@ -116,6 +116,7 @@ if __name__ == "__main__":
             print(f"The driver '{driver_name}' is currently running.")
             user_input = input("Do you want to stop the driver? (y/n): ")
             if user_input.lower() == "y":
+                # TODO could considering grant admin permit when script start at beginning
                 request_uac_or_exit()
                 stop_driver(driver_name)
             else:
